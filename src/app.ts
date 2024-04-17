@@ -11,9 +11,7 @@ import sqlite3 from "sqlite3";
 
 //TypeORM
 import { DataSource } from "typeorm";
-import { Entree } from "./models/entree";
-import { Appetizer } from "./models/appetizer";
-import { Salad } from "./models/salad";
+import { testDataSource, devDataSource } from "./data-source";
 
 //DAOs
 //import { EntreeDAO } from "./dao/entree";
@@ -21,7 +19,12 @@ import AppetizerDAO from "./daos/appetizer-dao";
 //import { SaladDAO } from "./dao/salad";
 
 
-export default function createApp(ENVIRONMENT ?: string){
+/**
+ * In order to implement a Factory Design pattern the application configuration needs to be changed based on a parameter, in this case the environment
+ * @param {string} ENVIRONMENT - The environment in which the application is running
+ * @returns - An express application
+ */
+export default async function createApp(ENVIRONMENT ?: string){
 
     const application = express();
     application.use(express.json());
@@ -30,40 +33,29 @@ export default function createApp(ENVIRONMENT ?: string){
     if(ENVIRONMENT === "test"){
         application.set("environment", "test");
         //Test Configuration
-        dataSource = new DataSource({
-            type: "sqlite",
-            database: ":memory:",
-            synchronize: true,
-            logging: true,
-            dropSchema: true,
-            entities: [Entree, Appetizer, Salad]
-        });
+        dataSource = testDataSource();
     }else{
         application.set("environment", "development");
 
         const db = new sqlite3.Database("dev.db");
 
         //Dev Configuration
-        dataSource = new DataSource({
-            type: "sqlite",
-            database: "dev.db",
-            synchronize: true,
-            logging: true,
-            entities: [Entree, Appetizer, Salad]
-        });
+        dataSource = devDataSource();
     }
 
-    //Initialize the database and handle the promise
-    dataSource.initialize()
-    .then(() => {
-        //Pass the datasource to our DAOs
-        const appetizerDAO = new AppetizerDAO(dataSource);
-        
-    })
-    .catch((error) => {
-        console.timeLog("Error initializing the database");
+    //Check to see if a connection exists before we attempt to connect to the database
+    if(dataSource.isInitialized){
+        await dataSource.destroy();
+    }
+
+    await dataSource.initialize();
+    if(!dataSource.isInitialized){
+        console.log("Error initializing the database");
         process.exit(1);
-    });
+    }
+    
+    //Rather than handle all of the database logic within the routes, we can create DAOs to handle the database logic
+    const appetizerDAO = new AppetizerDAO(dataSource);
 
     return application;
 }

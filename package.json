@@ -2,10 +2,10 @@
   "name": "restaurantapi",
   "version": "1.0.0",
   "description": "API built using NodeJS and GraphQL",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && node dist/index.js",
+    "start": "npm run build && node dist/src/index.js",
     "dev": "nodemon src/index.ts",
     "test": "jest --coverage"
   },

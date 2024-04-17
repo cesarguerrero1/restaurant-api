@@ -4,27 +4,27 @@
             {
                 "name": "Iceberg Wedge Salad with House Cured Bacon",
                 "description": "tomato salsa gorgonzola",
-                "cost": 7.50
+                "price": 7.50
             },
             {
                 "name": "Sautéed Shredded Brussels Sprouts",
                 "description": "bacon hazelnuts gorgonzola",
-                "cost": 6.95
+                "price": 6.95
             },
             {
                 "name": "Kale Salad",
                 "description": "parmesan crisp corn radish garlic-lemon vinaigrette",
-                "cost": 7.50
+                "price": 7.50
             },
             {
                 "name": "Pecan Crusted Utah Goat Cheese with Basil-Mint Pesto",
                 "description": "grilled tomato salsa crostini",
-                "cost": 6.95
+                "price": 6.95
             },
             {
                 "name": "Chicken and Cabbage Eggrolls",
                 "description": "hot & sour dipping sauce",
-                "cost": 6.95
+                "price": 6.95
             }
         ]
     }

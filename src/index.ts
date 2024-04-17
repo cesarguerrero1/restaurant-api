@@ -15,7 +15,7 @@ async function main(){
      */
 
     //We don't provide any argument which means this will be a development environment
-    const app = createApp();
+    const app = await createApp();
 
     /**
      * Handling the graphql queries here

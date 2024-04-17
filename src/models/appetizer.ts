@@ -11,7 +11,7 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Appetizer{
     @PrimaryGeneratedColumn()
-    appetizerID!: number
+    appetizerID?: number
 
     @Column()
     name!: string
