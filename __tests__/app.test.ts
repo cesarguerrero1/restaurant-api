@@ -17,7 +17,7 @@ describe("Testing Factory Design pattern", () => {
 
     test("Providing 'test' as an environment should set the environment to test", () => {
         const app = createApp("test");
-        expect(app.get("environment")).toBe("other");
+        expect(app.get("environment")).toBe("test");
     });
 
 });
