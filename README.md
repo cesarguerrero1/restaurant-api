@@ -10,9 +10,9 @@
 
 # Project Replication
 
-In order to run this program you will need to install NodeJS onto your computer. Any version past V18 will work and the download page is provided for convenience (https://nodejs.org/en/download).
+In order to run this program you will need to install NodeJS onto your computer. Any version past V18 will work. The download page is provided for convenience (https://nodejs.org/en/download)
 
-Once you have NodeJS installed simply follow the instructiosn below.
+Once you have NodeJS installed simply follow the instructions below:
 
 1. Clone the github repository onto your machine
 
@@ -21,6 +21,6 @@ Once you have NodeJS installed simply follow the instructiosn below.
 3. Once the dependencies are installed you can start the server one of two ways
     - You can run ```npm run start``` which will trigger Node to precompile all of the Typescript into Javascript before the server is started. Unlike the option below, changes to the codebase will not force the server to restart
     
-    - You can run ```npm run dev``` which will instead trigger Node to compile all of the files at runtime. Additionally, the development environment uses ```nodemon``` so any changes to the codebase will automatically restart the server
+    - You can run ```npm run dev``` which will instead trigger Node to compile all of the files at runtime. This option uses ``nodemon``` so any changes to the codebase will automatically restart the server
 
 4. With that your instance should be up and running and the server can be reached at http://localhost:4000

@@ -7,12 +7,10 @@
 
 import express, { Response, Request } from 'express';
 
-const app = express();
-app.use(express.json());
+import createApp from './app';
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello World');
-});
+//We don't provide any argument which means this will be a development environment
+const app = createApp();
 
 //Server listens on port 4000
 app.listen(4000);
