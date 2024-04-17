@@ -1,0 +1,36 @@
+{
+    "entrees":{
+        "items": [
+            {
+                "name": "Farfalle Pasta with Braised Pork in Tomato Cream", 
+                "description": "capers butternut squash kale",
+                "price": 12.95
+            },
+            {
+                "name": "Stout Braised Bratwurst", 
+                "description": "horseradish mashed potatoes roasted root veggies grilled onion",
+                "price": 13.95
+            },
+            {
+                "name": "Salmon & Crispy Tofu in Yellow Curry Sauce", 
+                "description": "vegetable sauté golden raisin chutney",
+                "price": 15.95
+            },
+            {
+                "name": "Sesame Shrimp", 
+                "description": "udon noodles ramen broth shiitake mushrooms bean sprouts scallions",
+                "price": 13.95
+            },
+            {
+                "name": "Chili Relleno",
+                "description": "Stuffed with Jack Cheese & Corn Glazed Yam, Chayote Squash Succotash, Red Chili Sauce",
+                "price": 9.95
+            },
+            {
+                "name": "Pepita Crusted Salmon with Chipotle Glaze",
+                "description": "chevre whipped yams, jicama slaw, tomatillo sauce",
+                "price": 10.95
+            }
+        ]
+    }
+}

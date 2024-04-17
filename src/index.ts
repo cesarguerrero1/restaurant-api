@@ -9,8 +9,21 @@ import express, { Response, Request } from 'express';
 
 import createApp from './app';
 
-//We don't provide any argument which means this will be a development environment
-const app = createApp();
+async function main(){
+    /**
+     * Handling building the graphql schema here
+     */
 
-//Server listens on port 4000
-app.listen(4000);
+    //We don't provide any argument which means this will be a development environment
+    const app = await createApp();
+
+    /**
+     * Handling the graphql queries here
+     */
+
+    //Server listens on port 4000
+    app.listen(4000);
+}
+
+//Start the server
+main();

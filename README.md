@@ -1,12 +1,54 @@
 # Restaurant API
 
+This API is meant to serve a fictitious restaurant menu application. It is meant to only be used in a development environment and is really just a representation of how to develop an API using GraphQL and Node.js.
+
 # Overview
 
+This repository contains all of the files needed to run the API. As mentioned before the application is only meant to be run in a developmental capacity, but it can be made production ready.
+
+There is a CI pipeline in place that was created using Github Actions in order to test the application outside of a local development environment. 
+
 # System Design
+![](./readme-assets/system-design.png)
+
+The architecture and design for the application are as follows:
+
+- *** ExpressJS Web Framework ***
+    - The Express Web Application Framework is used to handle all of the server logic and routing. This framework was chosen becuase it is lightweight and un-opinionated
+
+    - Within Express, the *** Factory design pattern *** is used to allow for seamless deployment into different environments, in this case development and testing. This is especially useful because the development and test environemnt should not be using the same database. As seen in the code, before the application is created, the user needs to specify the ENVIRONMENT that they wish to run in.
+
+- *** GraphQL ***
+
+- *** SQLite ***
+    - Since this is not a production application, SQLite was chosen as the database as it requires little to no setup by the user. All that is required is either a path so the database file can be created or a ":memory:" argument so that the files just runs in-memory.
+
+    - Note that SQLite is not meant to be used in a prodution setting so a new database would have to be chosen if the end-goal is to launch the application in a production environemnt
+
+Aside from this, it is important to note that this application is purposefully missing specific libraries/components. For instance, there is no use of CORS, Server-side Sessions, or environmental variables to mask settings within the application. The application is a local project and so the ideas above were deemed out of scope.
 
 # Database Design
+![](./readme-assets/simple-tables.png)
+
+The above ER Diagrams were made using the Mermaid Diagramming Tool (https://mermaid.js.org/)
+
+## Business Logic
+The requirements around pricing for certain food combinations is handled within the DAO as opposed to built into the database. For instance in the database you will find that the *Sides Table* has costs associated with all of the various sides, but a number of food orders get these sides for free. In those cases the business logic handles any cost calculations.
+
+## Simple Tables
+While the simple tables picture denotes multiple tables, you will find that in the actual database there are only tables for Appetizers and Entrees. This was purely done for the sake of speeding up development. The (2) tables are more than enough for use in development and testing.
+
+## Complex Tables
+
 
 # Testing
+
+The Jest Testing Framework was used to test this application. All tests can be found in the "./_tests_" directory and can be run using the ```npm run test``` command. The results and coverage of all the tests will be outputted to the console. While Jest is often used to test JavaScript, this application tests the Typescript files by utilizing the ts-jest library.
+
+In addition to using Jest, manual testing was conducted using the Postman API application and DataGrip application as needed
+- Postman helped to verify whether errors were due to programming logic or invalid API calls.
+
+- DataGrip provides a rich GUI that allows you to interact with your database
 
 # Project Replication
 
