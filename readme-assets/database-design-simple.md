@@ -4,34 +4,34 @@
         int appetizerID PK
         string name
         string description
-        float cost
+        float price
     }
 
     Entree{
         int entreeID PK
         string name
         string description
-        float cost
+        float price
     }
 
     Salad{
         int saladID PK
         string name
         string description
-        float cost
+        float price
     }
 
     Taco{
         int tacoID PK
         string name
         string description
-        float cost
+        float price
     }
 
     Fajita{
         int fajitaID PK
         string name
         string description
-        float cost
+        float price
     }
 ```

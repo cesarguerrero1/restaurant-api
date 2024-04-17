@@ -14,9 +14,8 @@ import { DataSource } from "typeorm";
 import { testDataSource, devDataSource } from "./data-source";
 
 //DAOs
-//import { EntreeDAO } from "./dao/entree";
+import EntreeDAO from "./daos/entree-dao";
 import AppetizerDAO from "./daos/appetizer-dao";
-//import { SaladDAO } from "./dao/salad";
 
 
 /**
@@ -56,6 +55,7 @@ export default async function createApp(ENVIRONMENT ?: string){
     
     //Rather than handle all of the database logic within the routes, we can create DAOs to handle the database logic
     const appetizerDAO = new AppetizerDAO(dataSource);
+    const entreeDAO = new EntreeDAO(dataSource);
 
     return application;
 }

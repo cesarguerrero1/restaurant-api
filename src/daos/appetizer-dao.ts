@@ -42,7 +42,7 @@ export default class AppetizerDAO{
     };
 
     /**
-     * Creates a new appetizer and attempts to save it to the database
+     * Creates a new appetizer and attempt to save it to the database
      * @param {Appetizer} appetizer - Must contain all of the necessary fields to create a new appetizer
      * @returns - The object that was created in the database
      */
@@ -53,7 +53,7 @@ export default class AppetizerDAO{
         }
         
         //We do not want to allow creation of appetizers with the same PK
-        const existingAppetizer = await this.getAppetizerByID(newAppetizer.appetizerID)
+        const existingAppetizer = await this.getAppetizerByID(newAppetizer.appetizerID);
         if(existingAppetizer !== null){
             throw new Error("An appetizer with that PK already exists");
         }
@@ -86,19 +86,19 @@ export default class AppetizerDAO{
      * @returns - An empty promise
      */
     async deleteAppetizerById(appetizerID: number|undefined){
-        const existingAppetizer = await this.getAppetizerByID(appetizerID);
-        if(existingAppetizer === null){
+        const appetizer = await this.getAppetizerByID(appetizerID);
+        if(appetizer === null){
             throw new Error("An appetizer with that PK does not exist");
         }
 
-        return await this.repository.remove(existingAppetizer);
+        return await this.repository.remove(appetizer);
     };
 
     /**
      * Clears all the data in the given table via hte TRUNCATE method
      * @returns - An empty promise
      */
-        async deleteAllAppetizers(){
+    async deleteAllAppetizers(){
         return await this.repository.clear();
     }
 

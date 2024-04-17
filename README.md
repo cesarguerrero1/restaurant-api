@@ -36,7 +36,7 @@ The above ER Diagrams were made using the Mermaid Diagramming Tool (https://merm
 The requirements around pricing for certain food combinations is handled within the DAO as opposed to built into the database. For instance in the database you will find that the *Sides Table* has costs associated with all of the various sides, but a number of food orders get these sides for free. In those cases the business logic handles any cost calculations.
 
 ## Simple Tables
-While the simple tables picture denotes multiple tables, you will find that in the actual database there are only tables for Appetizers, Entrees, and Salads. This was purely done for the sake of speeding up development. The first (3) tables are more than enough for use in development and testing.
+While the simple tables picture denotes multiple tables, you will find that in the actual database there are only tables for Appetizers and Entrees. This was purely done for the sake of speeding up development. The (2) tables are more than enough for use in development and testing.
 
 ## Complex Tables
 
