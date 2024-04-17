@@ -5,8 +5,6 @@
  * @file Integration test for the AppetizerDAO against our SQLite database in memory
  */
 
-
-import createApp from "../src/app";
 import { testDataSource } from "../src/data-source";
 import AppetizerDAO from "../src/daos/appetizer-dao";
 import appData from "../seed-data/appetizers.json";
@@ -26,23 +24,24 @@ describe("Testing AppetizerDAO methods", () => {
         await appetizerDAO.deleteAllAppetizers();
     });
 
+    const data = {
+        name: "",
+        description: "",
+        price: 0
+    }
+
     test("Retrieve all rows from an empty table", async () => {
         expect(await appetizerDAO.getAllAppetizers()).toHaveLength(0);
     });
 
     test("Create a new valid appetizer in the database", async () => {
-        const data = {
-            name: "",
-            description: "",
-            price: 0
-        };
 
         const result = await appetizerDAO.createAppetizer(data);
         //We expect all the field values to be the same as the data object
         expect(result.appetizerID).toBe(1); //Recall that the ID is auto-incremented
-        expect(result.name).toBe("");
-        expect(result.description).toBe("");
-        expect(result.price).toBe(0);
+        expect(result.name).toBe(data.name);
+        expect(result.description).toBe(data.description);
+        expect(result.price).toBe(data.price);
 
         expect(await appetizerDAO.getAllAppetizers()).toHaveLength(1);
     });
@@ -73,9 +72,9 @@ describe("Testing AppetizerDAO methods", () => {
         expect(result).not.toBeNull();
 
         expect(result?.appetizerID).toBe(1);
-        expect(result?.name).toBe("");
-        expect(result?.description).toBe("");
-        expect(result?.price).toBe(0);
+        expect(result?.name).toBe(data.name);
+        expect(result?.description).toBe(data.description);
+        expect(result?.price).toBe(data.price);
         
     });
 
@@ -123,7 +122,7 @@ describe("Testing AppetizerDAO methods", () => {
         expect(result?.description).toBe("New Description");
         expect(result?.price).toBe(1);
     });
-
+    
     test("Delete an existing appetizer", async () => {
         await appetizerDAO.deleteAppetizerById(1);
         expect(await appetizerDAO.getAllAppetizers()).toHaveLength(0);
@@ -139,8 +138,7 @@ describe("Testing all AppetizerDAO methods with multiple rows", () => {
     const dataArray = appData.appetizers.items;
 
     test("The database should be empty", async () => {
-        const result = await appetizerDAO.getAllAppetizers();
-        expect(result).toHaveLength(0);
+        expect(await appetizerDAO.getAllAppetizers()).toHaveLength(0);
     });
 
     test("Create multiple rows in the database", async () => {
@@ -149,7 +147,6 @@ describe("Testing all AppetizerDAO methods with multiple rows", () => {
             return appetizerDAO.createAppetizer(item);
         }));
 
-        const result = await appetizerDAO.getAllAppetizers();
         expect(await appetizerDAO.getAllAppetizers()).toHaveLength(dataArray.length);
     });
 
@@ -165,14 +162,15 @@ describe("Testing all AppetizerDAO methods with multiple rows", () => {
         const result = await appetizerDAO.getAppetizerByID(newData.appetizerID);
 
         expect(result).not.toBeNull();
-        expect(result?.appetizerID).toBe(2);
-        expect(result?.name).toBe("Update Name");
-        expect(result?.description).toBe(data.description);
-        expect(result?.price).toBe(data.price);
+        expect(result?.appetizerID).toBe(newData.appetizerID);
+        expect(result?.name).toBe(newData.name);
+        expect(result?.description).toBe(newData.description);
+        expect(result?.price).toBe(newData.price);
     });
 
     test("Delete one of the rows in the database", async () => {
         await appetizerDAO.deleteAppetizerById(2);
+        expect(await appetizerDAO.getAppetizerByID(2)).toBeNull();
         expect(await appetizerDAO.getAllAppetizers()).toHaveLength(dataArray.length - 1);
     });
 

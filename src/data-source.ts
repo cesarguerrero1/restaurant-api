@@ -8,7 +8,6 @@ import { DataSource } from "typeorm";
 
 import { Entree } from "./models/entree";
 import { Appetizer } from "./models/appetizer";
-import { Salad } from "./models/salad";
 
 
 //Returns a data source where our sqlite database only exists in memory
@@ -18,7 +17,7 @@ export const testDataSource = () => {
         database: ":memory:",
         synchronize: true,
         dropSchema: true,
-        entities: [Entree, Appetizer, Salad]
+        entities: [Entree, Appetizer]
     });
 }
 
@@ -28,6 +27,6 @@ export const devDataSource = () => {
         type: "sqlite",
         database: "dev.db",
         synchronize: true,
-        entities: [Entree, Appetizer, Salad]
+        entities: [Entree, Appetizer]
     });
 }
