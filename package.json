@@ -1,0 +1,11 @@
+{
+  "name": "restaurantapi",
+  "version": "1.0.0",
+  "description": "API built using NodeJS and GraphQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "author": "Cesar Guerrero",
+  "license": "ISC"
+}
