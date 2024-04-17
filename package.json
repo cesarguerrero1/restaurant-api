@@ -2,8 +2,11 @@
   "name": "restaurantapi",
   "version": "1.0.0",
   "description": "API built using NodeJS and GraphQL",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node dist/index.js",
+    "dev": "nodemon src/index.ts",
     "test": "jest --coverage"
   },
   "author": "Cesar Guerrero",
