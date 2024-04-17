@@ -16,6 +16,7 @@
     "graphql": "^15.8.0",
     "graphql-http": "^1.22.1",
     "reflect-metadata": "^0.2.2",
+    "ruru": "^2.0.0-beta.11",
     "sqlite3": "^5.1.7",
     "type-graphql": "^1.1.1",
     "typeorm": "^0.3.20"
