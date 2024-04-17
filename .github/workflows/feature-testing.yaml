@@ -10,6 +10,22 @@ permissions:
 jobs:
     Build:
         runs-on: ubuntu-latest
+        
+        strategy:
+            matrix:
+                node-version: [18.x, 20.x]
+
         steps:
-            - name: Test
-              run: echo "Hello World!"
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                node-version: ${{ matrix.node-version }}
+              
+            - name: Install Dependecies
+              run: npm ci
+            
+            - name: Run Tests
+              run: npm run test 
