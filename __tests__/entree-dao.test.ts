@@ -83,9 +83,53 @@ describe("Testing EntreeDAO methods", () => {
         expect(result).toBeNull();
     });
 
-    
+    test("Updating a non-extistent row in the table", async () => {
+        const data = {
+            entreeID: 10,
+            name: "Test Entree",
+            description: "Test Description",
+            price: 10.99
+        };
 
+        await expect(entreeDAO.updateEntreeById(data)).rejects.toThrow();
+    });
 
+    test("Updating an existing entree with a negative price", async () => {
+        const data = {
+            entreeID: 1,
+            name: "Test Entree",
+            description: "Test Description",
+            price: -1
+        };
+
+        await expect(entreeDAO.updateEntreeById(data)).rejects.toThrow();
+    });
+
+    test("Update an existing entree in the table", async () => {
+        const newData = {
+            ...data,
+            entreeID: 1,
+            description: "The description should now be different"
+        };
+
+        await entreeDAO.updateEntreeById(newData);
+        const result = await entreeDAO.getEntreeByID(newData.entreeID);
+
+        expect(result).not.toBeNull();
+        expect(result?.entreeID).toBe(newData.entreeID);
+        expect(result?.name).toBe(newData.name);
+        expect(result?.description).toBe(newData.description);
+        expect(result?.price).toBe(newData.price);
+    });
+
+    test("Deleting an existing row in the table", async () => {
+        await entreeDAO.deleteEntreeById(1);
+        expect(await entreeDAO.getAllEntrees()).toHaveLength(0);
+    });
+
+    test("Deleting a non-existent row in the table", async () => {
+        await expect(entreeDAO.deleteEntreeById(1)).rejects.toThrow();
+    });
 });
 
 describe("Testing all the EntreeDAO methods with multiple rows", () => {

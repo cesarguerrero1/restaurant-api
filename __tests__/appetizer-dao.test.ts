@@ -106,21 +106,21 @@ describe("Testing AppetizerDAO methods", () => {
     });
 
     test("Update an existing appetizer", async () => {
-        const data = {
+        const newData = {
+            ...data,
             appetizerID: 1,
             name: "New Name",
             description: "New Description",
-            price: 1
-        };
+        }
 
-        await appetizerDAO.updateAppetizerById(data);
-        const result = await appetizerDAO.getAppetizerByID(1);
+        await appetizerDAO.updateAppetizerById(newData);
+        const result = await appetizerDAO.getAppetizerByID(newData.appetizerID);
         expect(result).not.toBeNull();
 
-        expect(result?.appetizerID).toBe(1);
-        expect(result?.name).toBe("New Name");
-        expect(result?.description).toBe("New Description");
-        expect(result?.price).toBe(1);
+        expect(result?.appetizerID).toBe(newData.appetizerID);
+        expect(result?.name).toBe(newData.name);
+        expect(result?.description).toBe(newData.description);
+        expect(result?.price).toBe(newData.price);
     });
     
     test("Delete an existing appetizer", async () => {
@@ -129,7 +129,7 @@ describe("Testing AppetizerDAO methods", () => {
     });
 
     test("Delete a non-existent appetizer", async () => {
-        await expect(appetizerDAO.deleteAppetizerById(2)).rejects.toThrow();
+        await expect(appetizerDAO.deleteAppetizerById(1)).rejects.toThrow();
     });
 });
 
