@@ -1,0 +1,243 @@
+{
+    "tacos":{
+        "items":[
+            {
+                "name": "Beer Battered Fish with Jalapeño Remoulade, Roasted Salsa, Cabbage",
+                "description": "Served with red rice, black beans, corn & romaine salad, tortilla chips",
+                "cost": 9.95
+            },
+            {
+                "name": "Carne Asada (marinated sirloin) with Guacamole, Tomatillo Salsa",
+                "description": "Served with red rice, black beans, corn & romaine salad, tortilla chips",
+                "cost": 9.95
+            },
+            {
+                "name": "Citrus Marinated Chicken with Guacamole, Tomatillo Salsa",
+                "description": "Served with red rice, black beans, corn & romaine salad, tortilla chips",
+                "cost": 9.95
+            },
+            {
+                "name": "Grilled Veggie with Zucchini, Yellow Squash, Bell Peppers, Onion, Guacamole, Tomatillo Salsa",
+                "description": "Served with red rice, black beans, corn & romaine salad, tortilla chips",
+                "cost": 9.95
+            }
+        ]
+    },
+    "fajitas":{
+        "items":[
+            {
+                "name": "Chicken Fajitas with Onions, Poblano and Bell Peppers, Guacamole, Two Salsas",
+                "description": "Served with red rice, black beans, grilled tomato salad, choice of corn or flour tortillas",
+                "cost": 10.95
+            },
+            {
+                "name": "Sirloin Steak Fajitas with Onions, Poblano and Bell Peppers, Carrots, Guacamole, Two Salsas",
+                "description": "Served with red rice, black beans, grilled tomato salad, choice of corn or flour tortillas",
+                "cost": 10.95
+            }
+        ]
+    },
+    "enchiladas":{
+        "items": [
+            {
+                "name": "Chicken",
+                "description": "Served with Southwestern Succotash and Black Beans with Chipotle Crema"
+            },
+            {
+                "name": "Beef",
+                "description": "Served with Southwestern Succotash and Black Beans with Chipotle Crema"
+            },
+            {
+                "name": "Cheese",
+                "description": "Served with Southwestern Succotash and Black Beans with Chipotle Crema"
+            },
+            {
+                "name": "Veggie",
+                "description": "Served with Southwestern Succotash and Black Beans with Chipotle Crema"
+            } 
+        ]
+    },
+    "enchiladaPrices": {
+        "items": [
+            {
+                "quanity": 1,
+                "cost": 8.50
+            },
+            {
+                "quanity": 2,
+                "cost": 9.95
+            },
+            {
+                "quanity": 3,
+                "cost": 11.50
+            }
+        ]
+    },
+    "quicheFillings":{
+        "items":[
+            {
+                "name": "Bacon Quiche",
+                "cost": 8.95
+            },
+            {
+                "name": "Swiss Quiche",
+                "cost": 8.95
+            },
+            {
+                "name": "Mushroom Quiche",
+                "cost": 8.95
+            },
+            {
+                "name": "Zucchini Quiche",
+                "cost": 8.95
+            },
+            {
+                "name": "Mushroom Quiche",
+                "cost": 8.95
+            }
+        ]
+    },
+    "soups":{
+        "items":[
+            {
+                "name": "French Onion Soup",
+                "cost": 4.95
+            },
+            {
+                "name": "Soup of the Day",
+                "cost": 4.95
+            }
+        ]
+    },
+    "sides":{
+        "items": [
+            {
+                "name": "House Pasta Salad",
+                "cost": 2.3
+            },
+            {
+                "name": "Small Garden Salad",
+                "cost": 2.3
+            },
+            {
+                "name": "Fresh Fruit",
+                "cost": 2.3
+            },
+            {
+                "name": "Half Pasta of the Day",
+                "cost": 3.8
+            }
+        ]
+    },
+    "breads":{
+        "items":[
+            "Sourdough", "Whole Wheat", "Rye", "Cheese & Onion Bun", "Focaccia", "Crumb Bros. Baguette"
+        ]
+    },
+    "sandwiches":{
+        "items":[
+            {
+                "name": "Turkey & Avocado",
+                "cold": true,
+                "sizeChoice": true,
+                "description": "With Tomato"
+            },
+            {
+                "name": "Pub Club",
+                "cold": true,
+                "sizeChoice": true,
+                "description": "With turkey, bacon. lettuce, tomato"
+            },
+            {
+                "name": "Rare Roast Beef & Swiss",
+                "cold": true,
+                "chooseBread": true,
+                "sizeChoice": true,
+                "description": "With sweet-hot mustard, lettuce, red onion"
+            },
+            {
+                "name": "Veggie",
+                "cold": true,
+                "chooseBread": true,
+                "sizeChoice": true,
+                "description": "With pepper jack, avocado, sprout, tomato"
+            },
+            {
+                "name": "Southwest Chicken Breast",
+                "cold": false,
+                "chooseBread": true,
+                "sizeChoice": false,
+                "description": "With Grilled Onion, Poblano Pepper, Tomato, Lettuce, Jack Cheese",
+                "fixedCost": 9.50
+            },
+            {
+                "name": "Portobello",
+                "cold": false,
+                "chooseBread": true,
+                "sizeChoice": false,
+                "description": "With Fresh Mozzarella, Caramelized Onion, Roasted Pepper, Tomato, Field Greens, Basil Aioli",
+                "fixedCost": 9.50
+            },
+            {
+                "name": "Chipotle BBQ Pork",
+                "cold": false,
+                "chooseBread": true,
+                "sizeChoice": false,
+                "description": "With Pickled Jalapeño Slaw",
+                "fixedCost": 9.50
+            },
+            {
+                "name": "Bacon Burger",
+                "cold": false,
+                "chooseBread": true,
+                "sizeChoice": false,
+                "descriptionn": "With Swiss, Lettuce, Tomato",
+                "fixedCost": 9.25
+            },
+            {
+                "name": "Mexi Burger",
+                "cold": false,
+                "chooseBread": true,
+                "sizeChoice": false,
+                "description": "With Pepper Relish, Pepper Jack, Tomato, Lettuce, Guacamole",
+                "fixedCost": 9.25
+            },
+            {
+                "name": "Herb Marinated top Sirloin",
+                "cold": false,
+                "chooseBread": false,
+                "sizeChoice": false,
+                "description": "With Crimini Mushrooms, Caramelized Onion, Gorgonzola, Basil Aioli, Served Open Faced on Fococcia",
+                "fixedCost": 10.95
+            },
+            {
+                "name": "Roast Beef",
+                "cold": false,
+                "chooseBread": false,
+                "sizeChoice": false,
+                "description": "With Ancho Au Jus Jack Cheese, Grilled Onions, Served on Crumb Bros. Baguette",
+                "fixedCost": 9.75
+            },
+            {
+                "name": "Blackened Catfish",
+                "cold": false,
+                "chooseBread": false,
+                "sizeChoice": false,
+                "description": "With Creole Peppers & Onions, Fresh Herb Aioli, Served on house made Sourdough",
+                "fixedCost": 9.70
+            }
+        ]
+    },
+    "sandwichPrices":{
+        "items":[
+            {
+                "size": "Half",
+                "cost": 7.95
+            },
+            {
+                "size": "Full",
+                "cost": 9.25
+            }
+        ]
+    }
+}

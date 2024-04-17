@@ -1,0 +1,36 @@
+{
+    "salads":{
+        "items": [
+            {
+                "name": "Grilled Red Trout Lentils",
+                "description": "Tomatoes, Cukes, Green Beans, Red Bells, Almonds, Sundried Tomato Vinaigrette",
+                "cost": 10.95
+            },
+            {
+                "name": "Smoked Turkey Cheese Tortellini",
+                "description": "Bacon, Tomato, Cucumber, Egg, Black Bean-Corn Salsa, Avocado",
+                "cost": 9.95
+            },
+            {
+                "name": "Asian Grilled Chicken",
+                "description": "Snow Peas, Carrot Slaw, Red Bells, Water Chestnut, Peanuts, Baby Corn, Cilantro, Cukes, Spicy Peanut Dressing",
+                "cost": 10.50
+            },
+            {
+                "name": "Southwest Grilled Chicken",
+                "description": "Tomato, Guacamole, pepitas, Jicama, Corn & Black Bean Salsa, Orange Wedges, Spicy Citrus Vinaigrette",
+                "cost": 10.50
+            },
+            {
+                "name": "Mediterranean Italian Sausage",
+                "description": "Artichoke Hearts, Green Beans, Roma Tomato, Kalamatas, Red Onion, Cucumber, Croutons, Parmesan, Fresh Mozzarella, Gorgonzola Vinaigrette",
+                "cost": 9.95
+            },
+            {
+                "name": "Grilled Salmon",
+                "description": "Artichoke tapenade, shredded kale, corn, radish, parmesan crisps",
+                "cost": 11.50
+            }
+        ]
+    }
+}

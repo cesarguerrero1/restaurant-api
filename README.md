@@ -28,6 +28,18 @@ The architecture and design for the application are as follows:
 Aside from this, it is important to note that this application is purposefully missing specific libraries/components. For instance, there is no use of CORS, Server-side Sessions, or environmental variables to mask settings within the application. The application is a local project and so the ideas above were deemed out of scope.
 
 # Database Design
+![](./readme-assets/simple-tables.png)
+
+The above ER Diagrams were made using the Mermaid Diagramming Tool (https://mermaid.js.org/)
+
+## Business Logic
+The requirements around pricing for certain food combinations is handled within the DAO as opposed to built into the database. For instance in the database you will find that the *Sides Table* has costs associated with all of the various sides, but a number of food orders get these sides for free. In those cases the business logic handles any cost calculations.
+
+## Simple Tables
+While the simple tables picture denotes multiple tables, you will find that in the actual database there are only tables for Appetizers, Entrees, and Salads. This was purely done for the sake of speeding up development. The first (3) tables are more than enough for use in development and testing.
+
+## Complex Tables
+
 
 # Testing
 
