@@ -36,6 +36,7 @@ export async function createApp(ENVIRONMENT ?: string){
     const application = express();
     application.use(express.json());
     
+    //Factory Design Pattern
     let dataSource: DataSource; 
     if(ENVIRONMENT === "test"){
         application.set("environment", "test");

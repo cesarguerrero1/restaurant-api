@@ -4,8 +4,8 @@
  * 
  * @file This file contains the data source configurations for our application
  */
-import { DataSource } from "typeorm";
 
+import { DataSource } from "typeorm";
 import { Entree } from "./models/entree";
 import { Appetizer } from "./models/appetizer";
 

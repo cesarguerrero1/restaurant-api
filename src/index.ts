@@ -8,6 +8,7 @@
 import {createApp, configureGraphQL} from './app';
 
 
+//Main function to start the server
 async function main(){
 
     //We don't provide any argument which means this will be a development environment

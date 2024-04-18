@@ -32,7 +32,7 @@ export class Appetizer{
 }
 
 //Create InputType for GraphQL Mutations - I want to keep the input type and model in the same file
-@InputType("Word")
+@InputType()
 export class CreateAppetizerInput{
     @Field()
     name!: string
