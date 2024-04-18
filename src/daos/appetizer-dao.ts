@@ -59,9 +59,11 @@ export default class AppetizerDAO{
         }
         
         //We do not want to allow creation of appetizers with the same PK
-        const existingAppetizer = await this.getAppetizerByID(newAppetizer.appetizerID);
-        if(existingAppetizer !== null){
-            throw new Error("An appetizer with that PK already exists");
+        if(newAppetizer.appetizerID !== undefined){
+            const existingAppetizer = await this.getAppetizerByID(newAppetizer.appetizerID);
+            if(existingAppetizer !== null){
+                throw new Error("An appetizer with that PK already exists");
+            }
         }
         return await this.repository.save(newAppetizer);
     }

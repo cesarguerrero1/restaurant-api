@@ -54,10 +54,12 @@ export default class EntreeDAO{
         if(newEntree.price < 0){
             throw new Error("Price cannot be negative");
         };
-
-        const existingEntree = await this.getEntreeByID(newEntree.entreeID);
-        if(existingEntree !== null){
-            throw new Error("An entree with that PK already exists");
+        
+        if(newEntree.entreeID !== undefined){
+            const existingEntree = await this.getEntreeByID(newEntree.entreeID);
+            if(existingEntree !== null){
+                throw new Error("An entree with that PK already exists");
+            }
         }
 
         return await this.repository.save(newEntree);

@@ -221,7 +221,6 @@ describe("Update Entrees using GraphQL", () => {
 
     test("Valid entree update", async () => {
         const singleEntree = entreeArray[0];
-        console.log(singleEntree);
         const queryData = {
             query: `
                 mutation UpdateEntree{

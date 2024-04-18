@@ -74,3 +74,7 @@ Once you have NodeJS installed simply follow the instructions below:
     - The application made use of the ```ruru``` library in order to give you access to a ```GraphiQL IDE``` during development. A picture of the IDE and some example queries can be seen below
     
     - The schema should already be included in the current directory with all of the files you cloned, and if you make changes to the schema, they will be reflected anytime the server is started
+
+    - The database is seeded with data so you can automatically make queries on the Appetizer and Entree Tables
+
+![](./readme-assets/GraphiQL.png)
