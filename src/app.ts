@@ -4,8 +4,7 @@
  * 
  * @file We are employing the factory pattern when creating our application
  */
-
-import express from "express";
+import express, { Response, Request } from 'express';
 import fs from "fs";
 import "reflect-metadata";
 import sqlite3 from "sqlite3";
@@ -14,12 +13,25 @@ import sqlite3 from "sqlite3";
 import { DataSource } from "typeorm";
 import { testDataSource, devDataSource } from "./data-source";
 
+//GraphQL
+import { buildSchema } from 'type-graphql';
+import { createHandler } from "graphql-http/lib/use/express";
+import { ruruHTML } from 'ruru/server';
+
+//DAOs
+import EntreeDAO from "./daos/entree-dao";
+import AppetizerDAO from "./daos/appetizer-dao";
+
+//Resolvers
+import AppetizerResolver from './resolvers/appetizer-resolver';
+
+
 /**
  * In order to implement a Factory Design pattern the application configuration needs to be changed based on a parameter, in this case the environment
  * @param {string} ENVIRONMENT - The environment in which the application is running
  * @returns - An express application
  */
-export default async function createApp(ENVIRONMENT ?: string){
+export async function createApp(ENVIRONMENT ?: string){
 
     const application = express();
     application.use(express.json());
@@ -56,4 +68,42 @@ export default async function createApp(ENVIRONMENT ?: string){
     application.set("dataSource", dataSource);
 
     return application;
+}
+
+
+/**
+ * In order to test the graphql endpoint we need to create an instance of the application and then configure everything
+ * @param {express.Express} application - The express application
+ */
+export async function configureGraphQL(application: express.Express){
+
+    const serverSchema = await buildSchema({
+        resolvers: [AppetizerResolver],
+        emitSchemaFile: true, //Creates schema.graphql file in current directory
+        validate: { forbidUnknownValues: false } //Since we are not using class-validators we can set this to false
+    });
+
+    if(!serverSchema){
+        console.log("Error creating schema");
+        process.exit(1);
+    }
+
+    //Create our DAOs to handle database logic
+    const appetizerDAO = new AppetizerDAO(application.get("dataSource"));
+    const entreeDAO = new EntreeDAO(application.get("dataSource"));    
+
+    //Handle graphql requests - In Porduction this should be POST
+    application.all("/graphql", createHandler({
+        schema: serverSchema,
+        context: () => ({
+            appetizerDAO,
+            entreeDAO
+        })
+    }));
+
+    //We want to deploy a GraphiQL interface for development purposes
+    application.get("/", (req: Request, res: Response) => {
+        res.type("html")
+        res.end(ruruHTML({ endpoint: "/graphql" }))
+    });
 }
