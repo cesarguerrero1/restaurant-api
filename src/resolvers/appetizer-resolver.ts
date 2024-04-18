@@ -29,7 +29,7 @@ export default class AppetizerResolver{
     /**
      * A query to get a single appetizer by its primary key
      * @param {Ctx} ctx - The context object that contains the appetizerDAO
-     * @param {AppetizerDAO} appetizerID - The primary key of the appetizer we want to retrieve
+     * @param {Integer} appetizerID - The primary key of the appetizer we want to retrieve
      * @returns - A promise that resolves to the appetizer object with the given ID or NULL
      */
     @Query(() => Appetizer, {nullable: true})

@@ -24,6 +24,7 @@ import AppetizerDAO from "./daos/appetizer-dao";
 
 //Resolvers
 import AppetizerResolver from './resolvers/appetizer-resolver';
+import EntreeResolver from './resolvers/entree-resolver';
 
 
 /**
@@ -79,7 +80,7 @@ export async function createApp(ENVIRONMENT ?: string){
 export async function configureGraphQL(application: express.Express){
 
     const serverSchema = await buildSchema({
-        resolvers: [AppetizerResolver],
+        resolvers: [AppetizerResolver, EntreeResolver],
         emitSchemaFile: true, //Creates schema.graphql file in current directory
         validate: { forbidUnknownValues: false } //Since we are not using class-validators we can set this to false
     });
