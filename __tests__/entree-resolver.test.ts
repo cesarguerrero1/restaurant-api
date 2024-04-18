@@ -103,3 +103,61 @@ describe("Create Entrees using GraphQL", () => {
     });
 
 });
+
+describe("Query Entrees using GraphQL", () => {
+    //This entire test suite relies on data in the database so going to grab it all now
+    let entreeArray: Entree[];
+    beforeAll(async () => {
+        const queryData = {
+            query: getAllEntreesQuery
+        };
+
+        const response = await request(application).post("/graphql").send(queryData);
+
+        entreeArray = response.body.data.entrees;
+    });
+
+    test("Get a single entree", async () => {
+        const singleEntree = entreeArray[0];
+        const queryData = {
+            query: `
+                query GetSingleEntree{
+                    entree(entreeID: ${singleEntree.entreeID}){
+                        entreeID,
+                        name,
+                        price,
+                        description
+                    }
+                }
+            `
+        };
+
+        const response = await request(application).post("/graphql").send(queryData);
+        expect(response.status).toBe(200);
+
+        const returnedEntree = response.body.data.entree;
+        expect(returnedEntree.entreeID).toBe(singleEntree.entreeID);
+        expect(returnedEntree.name).toBe(singleEntree.name);
+        expect(returnedEntree.description).toBe(singleEntree.description);
+        expect(returnedEntree.price).toBe(singleEntree.price);
+    });
+
+    test("Invalid ID should return null", async () => {
+        const queryData = {
+            query: `
+                query GetSingleEntree{
+                    entree(entreeID: -1){
+                        entreeID,
+                        name,
+                        price,
+                        description
+                    }
+                }
+            `
+        };
+
+        const response = await request(application).post("/graphql").send(queryData);
+        expect(response.body.data.entree).toBeNull();
+    });
+    
+});

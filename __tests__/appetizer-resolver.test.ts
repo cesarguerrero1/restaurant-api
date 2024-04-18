@@ -117,12 +117,12 @@ describe("Querying Appetizers using GraphQL", () => {
     });
 
 
-    test("Get all appetizers then get a single appetizer using one of the IDs", async () => {
+    test("Get a single appetizer using one of the IDs", async () => {
 
         const singleAppetizer = appetizerArray[0];
 
         //Now retrieve an appetizer by its ID
-        const queryData2 = {
+        const queryData = {
             query: `
                     query GetAppetizer{
                         appetizer(appetizerID: ${singleAppetizer.appetizerID}){
@@ -135,10 +135,10 @@ describe("Querying Appetizers using GraphQL", () => {
                 `
         }
 
-        const response2 = await request(application).post("/graphql").send(queryData2);
-        expect(response2.status).toBe(200);
+        const response = await request(application).post("/graphql").send(queryData);
+        expect(response.status).toBe(200);
 
-        const secondAppetizer = response2.body.data.appetizer;
+        const secondAppetizer = response.body.data.appetizer;
         expect(secondAppetizer.appetizerID).toBe(singleAppetizer.appetizerID);
         expect(secondAppetizer.name).toBe(singleAppetizer.name);
         expect(secondAppetizer.description).toBe(singleAppetizer.description);
