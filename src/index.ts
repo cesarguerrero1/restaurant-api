@@ -8,7 +8,6 @@
 import {createApp, configureGraphQL} from './app';
 import {seedDatabase} from './seed-database';
 
-
 //Main function to start the server
 async function main(){
 

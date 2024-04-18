@@ -25,6 +25,8 @@ import AppetizerDAO from "./daos/appetizer-dao";
 //Resolvers
 import AppetizerResolver from './resolvers/appetizer-resolver';
 import EntreeResolver from './resolvers/entree-resolver';
+import EnchiladaResolver from './resolvers/enchilada-resolver';
+import EnchiladaPriceResolver from "./resolvers/enchiladaprice-resolver";
 
 
 /**
@@ -80,7 +82,7 @@ export async function createApp(ENVIRONMENT ?: string){
 export async function configureGraphQL(application: express.Express){
 
     const serverSchema = await buildSchema({
-        resolvers: [AppetizerResolver, EntreeResolver],
+        resolvers: [AppetizerResolver, EntreeResolver, EnchiladaResolver, EnchiladaPriceResolver],
         emitSchemaFile: true, //Creates schema.graphql file in current directory
         validate: { forbidUnknownValues: false } //Since we are not using class-validators we can set this to false
     });
@@ -91,15 +93,17 @@ export async function configureGraphQL(application: express.Express){
     }
 
     //Create our DAOs to handle database logic
-    const appetizerDAO = new AppetizerDAO(application.get("dataSource"));
-    const entreeDAO = new EntreeDAO(application.get("dataSource"));    
+    const dataSource : DataSource = application.get("dataSource");
+    const appetizerDAO = new AppetizerDAO(dataSource);
+    const entreeDAO = new EntreeDAO(dataSource);
 
     //Handle graphql requests - In Porduction this should be POST
     application.all("/graphql", createHandler({
         schema: serverSchema,
         context: () => ({
             appetizerDAO,
-            entreeDAO
+            entreeDAO,
+            dataSource //NOTE: This is only here becuase we don't have DAOs for Enchiladas and EnchiladaPrices
         })
     }));
 

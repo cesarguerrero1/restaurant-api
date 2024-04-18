@@ -1,0 +1,22 @@
+{
+    "enchiladas":{
+        "items": [
+            {
+                "name": "Chicken",
+                "description": "Served with Southwestern Succotash and Black Beans with Chipotle Crema"
+            },
+            {
+                "name": "Beef",
+                "description": "Served with Southwestern Succotash and Black Beans with Chipotle Crema"
+            },
+            {
+                "name": "Cheese",
+                "description": "Served with Southwestern Succotash and Black Beans with Chipotle Crema"
+            },
+            {
+                "name": "Veggie",
+                "description": "Served with Southwestern Succotash and Black Beans with Chipotle Crema"
+            } 
+        ]
+    }
+}

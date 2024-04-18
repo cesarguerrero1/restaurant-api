@@ -16,10 +16,36 @@ input CreateAppetizerInput {
   price: Float!
 }
 
+input CreateEnchiladaInput {
+  description: String
+  enchiladaPriceID: Int!
+  name: String!
+}
+
+input CreateEnchiladaPriceInput {
+  priceForOne: Float!
+  priceForThree: Float!
+  priceForTwo: Float!
+}
+
 input CreateEntreeInput {
   description: String
   name: String!
   price: Float!
+}
+
+type Enchilada {
+  description: String
+  enchiladaID: Int!
+  enchiladaPrice: EnchiladaPrice!
+  name: String!
+}
+
+type EnchiladaPrice {
+  enchiladaPriceID: Int!
+  priceForOne: Float!
+  priceForThree: Float!
+  priceForTwo: Float!
 }
 
 type Entree {
@@ -31,6 +57,8 @@ type Entree {
 
 type Mutation {
   createAppetizer(data: CreateAppetizerInput!): Appetizer!
+  createEnchilada(data: CreateEnchiladaInput!): Enchilada!
+  createEnchiladaPrice(data: CreateEnchiladaPriceInput!): EnchiladaPrice!
   createEntree(data: CreateEntreeInput!): Entree!
   deleteAppetizer(appetizerID: Int!): Boolean!
   deleteEntree(entreeID: Int!): Boolean!
@@ -41,6 +69,8 @@ type Mutation {
 type Query {
   appetizer(appetizerID: Int!): Appetizer
   appetizers: [Appetizer!]!
+  enchiladaPrices: [EnchiladaPrice!]!
+  enchiladas: [Enchilada!]!
   entree(entreeID: Int!): Entree
   entrees: [Entree!]!
 }

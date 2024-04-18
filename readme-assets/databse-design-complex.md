@@ -77,14 +77,14 @@
         float price
     }
     
-    Quichs }|--|| Side : ""
+    Quiche }|--|| Side : ""
     Quiche }|--|| QuicheFilling : ""
     SoupCombo }|--|| Soup : ""
     SoupCombo }o--|| Side : ""
     Enchilada }o--|| EnchiladaPrice : "pricing is based on"
-    Sandwiche }o--|| SandwichPrice : "pricing is based on"
-    SandwichBreadOption }|--|| Sandwiche : ""
+    Sandwich }o--|| SandwichPrice : "pricing is based on"
+    SandwichBreadOption }|--|| Sandwich : ""
     SandwichBreadOption }|--|| SandwichBread : ""
     SandwichSideOption }|--|| Side : ""
-    SandwichSideOption }|--|| Sandwiche : ""
+    SandwichSideOption }|--|| Sandwich : ""
 ```
