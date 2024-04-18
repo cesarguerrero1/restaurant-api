@@ -21,7 +21,11 @@ export class Enchilada{
     @Column()
     name!: string
 
-    @Field(type => EnchiladaPrice)
+    @Field({nullable: true})
+    @Column({default: "Yummy Enchilada"})
+    description?: string
+
+    @Field()
     @ManyToOne(() => EnchiladaPrice, {
         onDelete: "RESTRICT",
         nullable: false,
@@ -34,6 +38,9 @@ export class Enchilada{
 export class CreateEnchiladaInput{
     @Field()
     name!: string
+
+    @Field({nullable: true})
+    description?: string
 
     @Field(type => Int)
     enchiladaPriceID!: number

@@ -17,6 +17,7 @@ input CreateAppetizerInput {
 }
 
 input CreateEnchiladaInput {
+  description: String
   enchiladaPriceID: Int!
   name: String!
 }
@@ -34,6 +35,7 @@ input CreateEntreeInput {
 }
 
 type Enchilada {
+  description: String
   enchiladaID: Int!
   enchiladaPrice: EnchiladaPrice!
   name: String!

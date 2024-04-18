@@ -9,6 +9,7 @@
 import { DataSource } from "typeorm";
 import { Resolver, Query, Mutation, Arg, Ctx} from "type-graphql";
 import { Enchilada, CreateEnchiladaInput} from "../models/enchilada";
+import { EnchiladaPrice } from "../models/enchilada-price";
 
 @Resolver(Enchilada)
 export default class EnchiladaResolver{
@@ -22,8 +23,24 @@ export default class EnchiladaResolver{
     async createEnchilada(
         @Arg("data") data: CreateEnchiladaInput,
         @Ctx() ctx: {dataSource: DataSource}
-    ){
-        const enchilada = ctx.dataSource.getRepository(Enchilada).create(data);
+    ){  
+        //In order to keep these linked we need to pass the EnchiladaPrice Object as our model suggests
+        const enchiladaPrice = await ctx.dataSource.getRepository(EnchiladaPrice).findOne({
+            where:{
+                enchiladaPriceID: data.enchiladaPriceID
+            }
+        });
+
+        if(!enchiladaPrice){
+            throw new Error("Enchilada Price PK not found");
+        }
+
+        //Create the enchilada object
+        const enchilada = ctx.dataSource.getRepository(Enchilada).create({
+            ...data,
+            enchiladaPrice
+        });
+        
         return await ctx.dataSource.getRepository(Enchilada).save(enchilada);
     };
 };

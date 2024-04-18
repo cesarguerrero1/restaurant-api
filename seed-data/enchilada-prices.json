@@ -3,15 +3,15 @@
         "items": [
             {
                 "quanity": 1,
-                "cost": 8.50
+                "price": 8.50
             },
             {
                 "quanity": 2,
-                "cost": 9.95
+                "price": 9.95
             },
             {
                 "quanity": 3,
-                "cost": 11.50
+                "price": 11.50
             }
         ]
     }
