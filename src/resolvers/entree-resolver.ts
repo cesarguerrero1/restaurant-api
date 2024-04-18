@@ -51,6 +51,33 @@ export default class EntreeResolver{
         return await ctx.entreeDAO.createEntree(data);
     };
 
-    
+    /**
+     * A mutation to update an entree
+     * @param {Ctx} ctx - The context object that contains the entreeDAO
+     * @param {UpdateEntreeInput} data - The data needed to update a new entree
+     * @returns - The object that was updated in the database
+     */
+    @Mutation(() => Entree)
+    async updateEntree(
+        @Arg("data") data: UpdateEntreeInput,
+        @Ctx() ctx: {entreeDAO: EntreeDAO}
+    ){
+        return await ctx.entreeDAO.updateEntreeById(data);
+    }
 
-}
+    /**
+     * A mutation to delete an entree by its primary key
+     * @param {Ctx} ctx - The context object that contains the entreeDAO
+     * @param {Integer} entreeID - The primary key of the entree we want to delete
+     * @returns - A promise that resolves to a boolean
+     */
+    @Mutation(() => Boolean)
+    async deleteEntree(@Ctx() ctx: {entreeDAO: EntreeDAO}, @Arg("entreeID", type => Int) entreeID: number){
+        try{
+            await ctx.entreeDAO.deleteEntreeById(entreeID);
+            return true;
+        }catch(err){
+            return false;
+        }
+    };
+};

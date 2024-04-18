@@ -159,5 +159,25 @@ describe("Query Entrees using GraphQL", () => {
         const response = await request(application).post("/graphql").send(queryData);
         expect(response.body.data.entree).toBeNull();
     });
-    
+
+});
+
+describe("Deleting Entrees using GraphQL", () => {
+    const queryData = {
+        query: `
+            mutation DeleteEntree{
+                deleteEntree(entreeID: 1)
+            }
+        `
+    };
+
+    test("Delete an entree", async () => {
+        const response = await request(application).post("/graphql").send(queryData);
+        expect(response.body.data.deleteEntree).toBeTruthy();
+    });
+
+    test("Attempt to delete an invalid entree", async () => {
+        const response = await request(application).post("/graphql").send(queryData);
+        expect(response.body.data.deleteEntree).toBeFalsy();
+    });
 });
