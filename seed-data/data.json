@@ -71,42 +71,6 @@
             }
         ]
     },
-    "enchiladas":{
-        "items": [
-            {
-                "name": "Chicken",
-                "description": "Served with Southwestern Succotash and Black Beans with Chipotle Crema"
-            },
-            {
-                "name": "Beef",
-                "description": "Served with Southwestern Succotash and Black Beans with Chipotle Crema"
-            },
-            {
-                "name": "Cheese",
-                "description": "Served with Southwestern Succotash and Black Beans with Chipotle Crema"
-            },
-            {
-                "name": "Veggie",
-                "description": "Served with Southwestern Succotash and Black Beans with Chipotle Crema"
-            } 
-        ]
-    },
-    "enchiladaPrices": {
-        "items": [
-            {
-                "quanity": 1,
-                "cost": 8.50
-            },
-            {
-                "quanity": 2,
-                "cost": 9.95
-            },
-            {
-                "quanity": 3,
-                "cost": 11.50
-            }
-        ]
-    },
     "quicheFillings":{
         "items":[
             {

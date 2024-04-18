@@ -1,0 +1,18 @@
+{
+    "enchiladaPrices": {
+        "items": [
+            {
+                "quanity": 1,
+                "cost": 8.50
+            },
+            {
+                "quanity": 2,
+                "cost": 9.95
+            },
+            {
+                "quanity": 3,
+                "cost": 11.50
+            }
+        ]
+    }
+}
