@@ -43,6 +43,13 @@ Aside from this, it is important to note that this application is purposefully m
 ### Simple Tables
 While the diagram above denotes multiple tables, you will find that in the actual database there are only tables for Appetizers and Entrees. This was purely done for the sake of speeding up development. The (2) tables are more than enough to prove application design and logic.
 
+
+![](./readme-assets/complex-tables.png)
+### Complex Tables
+Included in the data were more complicated database relationships which I have mapped above. Similar to the simple tables, the only relationship that is mapped and reflected in the application is the Enchilada and Enchilada Prices tables. This was simply for speed of development. If you take a look at the models and resolvers for these two tables, you can get the basic idea of how a more complicated relationship would be modeled.
+- NOTE: Due to time constraints, the resolvers for the Enchilada and Enchilada Price were **NOT** tested nor were **DAOs** created. The more compicated the relationship the more tests and logic that needs to be implemented. The given DAOs and tests should more than exemplify that the process is similar and would just require more tests and logic.  
+
+
 ### Business Logic
 There are a number of requirements that are handled via business logic as opposed to handled via database design. For instance, the requirements around pricing for certain food combinations is handled within the DAO as opposed to built into the database. Additionally, PK validation and attempts to alter the database incorrectly are also handled via the DAO instead of database logic (e.g. SQLite Check() functions)
 
@@ -78,3 +85,5 @@ Once you have NodeJS installed simply follow the instructions below:
     - The database is seeded with data so you can automatically make queries on the Appetizer and Entree Tables
 
 ![](./readme-assets/GraphiQL.png)
+
+![](./readme-assets/Relation-GraphiQL.png)
