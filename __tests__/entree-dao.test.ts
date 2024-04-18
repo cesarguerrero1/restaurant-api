@@ -83,11 +83,9 @@ describe("Testing EntreeDAO methods", () => {
         expect(result).toBeNull();
     });
 
-    test("Updating a non-extistent row in the table", async () => {
+    test("Updating a non-existent row in the table", async () => {
         const data = {
             entreeID: 10,
-            name: "Test Entree",
-            description: "Test Description",
             price: 10.99
         };
 
@@ -97,8 +95,6 @@ describe("Testing EntreeDAO methods", () => {
     test("Updating an existing entree with a negative price", async () => {
         const data = {
             entreeID: 1,
-            name: "Test Entree",
-            description: "Test Description",
             price: -1
         };
 
@@ -107,7 +103,6 @@ describe("Testing EntreeDAO methods", () => {
 
     test("Update an existing entree in the table", async () => {
         const newData = {
-            ...data,
             entreeID: 1,
             description: "The description should now be different"
         };
@@ -117,9 +112,9 @@ describe("Testing EntreeDAO methods", () => {
 
         expect(result).not.toBeNull();
         expect(result?.entreeID).toBe(newData.entreeID);
-        expect(result?.name).toBe(newData.name);
+        expect(result?.name).toBe(data.name);
         expect(result?.description).toBe(newData.description);
-        expect(result?.price).toBe(newData.price);
+        expect(result?.price).toBe(data.price);
     });
 
     test("Deleting an existing row in the table", async () => {
@@ -149,9 +144,8 @@ describe("Testing all the EntreeDAO methods with multiple rows", () => {
     });
 
     test("Updating one of the rows in the database", async () => {
-        const data = dataArray[0];
+        const data = dataArray[1];
         const newData = {
-            ...data,
             entreeID: 2,
             description: "The description should now be different"
         }
@@ -159,11 +153,10 @@ describe("Testing all the EntreeDAO methods with multiple rows", () => {
         await entreeDAO.updateEntreeById(newData);
         const result = await entreeDAO.getEntreeByID(newData.entreeID);
 
+        //We can't guarantee the order of the promises so we can only check that the row was updated
         expect(result).not.toBeNull();
         expect(result?.entreeID).toBe(newData.entreeID);
-        expect(result?.name).toBe(newData.name);
         expect(result?.description).toBe(newData.description);
-        expect(result?.price).toBe(newData.price);
     });
 
     test("Deleting one of the rows in the database", async () => {

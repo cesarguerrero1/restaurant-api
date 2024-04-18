@@ -4,13 +4,32 @@
 # -----------------------------------------------
 
 type Appetizer {
-  appetizerID: Float!
+  appetizerID: Int!
   description: String
   name: String!
   price: Float!
 }
 
+type Mutation {
+  createAppetizer(data: Word!): Appetizer!
+  deleteAppetizer(appetizerID: Int!): Boolean!
+  updateAppetizer(data: UpdateAppetizerInput!): Appetizer!
+}
+
 type Query {
   appetizer(appetizerID: Int!): Appetizer
   appetizers: [Appetizer!]!
+}
+
+input UpdateAppetizerInput {
+  appetizerID: Int!
+  description: String
+  name: String
+  price: Float
+}
+
+input Word {
+  description: String
+  name: String!
+  price: Float!
 }

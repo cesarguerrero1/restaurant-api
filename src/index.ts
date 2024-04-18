@@ -22,18 +22,19 @@ import AppetizerResolver from './resolvers/appetizer-resolver';
 
 async function main(){
 
+    //We don't provide any argument which means this will be a development environment
+    const app = await createApp();
+
     const serverSchema = await buildSchema({
         resolvers: [AppetizerResolver],
-        emitSchemaFile: true //Creates schema.graphql file in current directory
+        emitSchemaFile: true, //Creates schema.graphql file in current directory
+        validate: { forbidUnknownValues: false } //Since we are not using class-validators we can set this to false
     });
 
     if(!serverSchema){
         console.log("Error creating schema");
         process.exit(1);
     }
-
-    //We don't provide any argument which means this will be a development environment
-    const app = await createApp();
 
     //Create our DAOs to handle database logic
     const appetizerDAO = new AppetizerDAO(app.get("dataSource"));

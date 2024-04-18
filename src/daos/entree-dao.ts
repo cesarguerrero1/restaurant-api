@@ -8,6 +8,10 @@
 import { Repository, DataSource} from "typeorm";
 import { Entree } from "../models/entree";
 
+interface EntreeUpdateInterface extends Partial<Entree>{
+    entreeID: number
+}
+
 /**
  * This class is the Data Access Object for the Entree Table and will be used to interact with the database
  */
@@ -61,10 +65,10 @@ export default class EntreeDAO{
 
     /**
      * Updates an existing entree in the table
-     * @param {Entree} entree - Must contain all of the necessary fields to update an entree
+     * @param {EntreeUpdateInterface} entree - Contains the primary key of the entree we want to update and the new values
      * @returns - The object that was updated in the database
      */
-    async updateEntreeById(entree: Entree){
+    async updateEntreeById(entree: EntreeUpdateInterface){
         const existingEntree = await this.getEntreeByID(entree.entreeID);
         if(existingEntree === null){
             throw new Error("Entree does not exist");

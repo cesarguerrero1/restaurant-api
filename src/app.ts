@@ -6,6 +6,7 @@
  */
 
 import express from "express";
+import fs from "fs";
 import "reflect-metadata";
 import sqlite3 from "sqlite3";
 
@@ -31,6 +32,10 @@ export default async function createApp(ENVIRONMENT ?: string){
     }else{
         application.set("environment", "development");
 
+        //Remove the database file if it exists
+        if(fs.existsSync("dev.db")){
+            fs.unlinkSync("dev.db");
+        }
         const db = new sqlite3.Database("dev.db");
 
         //Dev Configuration
