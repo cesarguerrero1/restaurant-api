@@ -24,7 +24,7 @@ The architecture and design for the application are as follows:
 - **GraphQL**
     - The API uses the GraphQL query language so the entire API can be accessed through the /graphql endpoint.
     
-    - In an effort to simplify the design and make it robust, the **type-graphql** is used in conjunction with **typorm**. By using both of these libraries both the database and graphql API can be created using central model/entity classes. If changes are made to the database design, there will only need to be minimal changes in order to keep graphql in sync with the database structure.
+    - In an effort to simplify the design and make it robust, **type-graphql** is used in conjunction with **typorm**. By using both of these libraries both the database and graphql API can be created using central model/entity classes. If changes are made to the database design, there will only need to be minimal changes in order to keep graphql in sync with the database structure.
 
 - **SQLite**
     - Since this is not a production application, SQLite was chosen as the database as it requires little to no setup by the user. All that is required is either a path so the database file can be created or a ":memory:" argument so that the files just runs in-memory.
@@ -82,7 +82,7 @@ Once you have NodeJS installed simply follow the instructions below:
     
     - The schema should already be included in the current directory with all of the files you cloned, and if you make changes to the schema, they will be reflected anytime the server is started
 
-    - The database is seeded with data so you can automatically make queries on the Appetizer and Entree Tables
+    - The database is seeded with data so you can automatically make queries
 
 ![](./readme-assets/GraphiQL.png)
 
