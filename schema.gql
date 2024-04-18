@@ -16,6 +16,12 @@ input CreateAppetizerInput {
   price: Float!
 }
 
+input CreateEntreeInput {
+  description: String
+  name: String!
+  price: Float!
+}
+
 type Entree {
   description: String
   entreeID: Int!
@@ -25,6 +31,7 @@ type Entree {
 
 type Mutation {
   createAppetizer(data: CreateAppetizerInput!): Appetizer!
+  createEntree(data: CreateEntreeInput!): Entree!
   deleteAppetizer(appetizerID: Int!): Boolean!
   updateAppetizer(data: UpdateAppetizerInput!): Appetizer!
 }
@@ -32,6 +39,7 @@ type Mutation {
 type Query {
   appetizer(appetizerID: Int!): Appetizer
   appetizers: [Appetizer!]!
+  entree(entreeID: Int!): Entree
   entrees: [Entree!]!
 }
 
