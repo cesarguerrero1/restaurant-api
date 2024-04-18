@@ -13,11 +13,6 @@ import sqlite3 from "sqlite3";
 import { DataSource } from "typeorm";
 import { testDataSource, devDataSource } from "./data-source";
 
-//DAOs
-import EntreeDAO from "./daos/entree-dao";
-import AppetizerDAO from "./daos/appetizer-dao";
-
-
 /**
  * In order to implement a Factory Design pattern the application configuration needs to be changed based on a parameter, in this case the environment
  * @param {string} ENVIRONMENT - The environment in which the application is running
@@ -52,10 +47,8 @@ export default async function createApp(ENVIRONMENT ?: string){
         console.log("Error initializing the database");
         process.exit(1);
     }
-    
-    //Rather than handle all of the database logic within the routes, we can create DAOs to handle the database logic
-    const appetizerDAO = new AppetizerDAO(dataSource);
-    const entreeDAO = new EntreeDAO(dataSource);
+
+    application.set("dataSource", dataSource);
 
     return application;
 }

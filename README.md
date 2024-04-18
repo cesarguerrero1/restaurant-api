@@ -8,6 +8,9 @@ This repository contains all of the files needed to run the API. As mentioned be
 
 There is a CI pipeline in place that was created using Github Actions in order to test the application outside of a local development environment. 
 
+NOTE: All diagrams were made using the Mermaid Diagram Tool (https://mermaid.js.org/)
+
+
 # System Design
 ![](./readme-assets/system-design.png)
 
@@ -30,16 +33,13 @@ Aside from this, it is important to note that this application is purposefully m
 # Database Design
 ![](./readme-assets/simple-tables.png)
 
-The above ER Diagrams were made using the Mermaid Diagramming Tool (https://mermaid.js.org/)
-
-## Business Logic
-The requirements around pricing for certain food combinations is handled within the DAO as opposed to built into the database. For instance in the database you will find that the *Sides Table* has costs associated with all of the various sides, but a number of food orders get these sides for free. In those cases the business logic handles any cost calculations.
-
-## Simple Tables
+### Simple Tables
 While the simple tables picture denotes multiple tables, you will find that in the actual database there are only tables for Appetizers and Entrees. This was purely done for the sake of speeding up development. The (2) tables are more than enough for use in development and testing.
 
-## Complex Tables
+### Complex Tables
 
+### Business Logic
+There are number of requirements that are handled via business logic as opposed to handled via database design. For instance, the requirements around pricing for certain food combinations is handled within the DAO as opposed to built into the database. Additionally, PK issues and attempts to alter the database incorrectly are also handled via the DAO.
 
 # Testing
 
@@ -65,4 +65,7 @@ Once you have NodeJS installed simply follow the instructions below:
     
     - You can run ```npm run dev``` which will instead trigger Node to compile all of the files at runtime. This option uses ```nodemon``` so any changes to the codebase will automatically restart the server
 
-4. With that your instance should be up and running and the server can be reached at http://localhost:4000
+4. Your server should now be active and can be reached at http://localhost:4000
+    - NOTE: The application made use of the ```ruru``` library in order to give you access to a GraphiQL IDE during development. A picture of the IDE and some example queries can be seen below
+    
+    - The schema should already be included in the current directory with all of the files you cloned, and if you make changes to the schema, they will be reflected anytime the server is started
