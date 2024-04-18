@@ -16,36 +16,41 @@ NOTE: All diagrams were made using the Mermaid Diagram Tool (https://mermaid.js.
 
 The architecture and design for the application are as follows:
 
-- *** ExpressJS Web Framework ***
+- **ExpressJS Web Framework**
     - The Express Web Application Framework is used to handle all of the server logic and routing. This framework was chosen becuase it is lightweight and un-opinionated
 
-    - Within Express, the *** Factory design pattern *** is used to allow for seamless deployment into different environments, in this case development and testing. This is especially useful because the development and test environemnt should not be using the same database. As seen in the code, before the application is created, the user needs to specify the ENVIRONMENT that they wish to run in.
+    - Within Express, the **Factory design pattern** is used to allow for seamless deployment into different environments, in this case development and testing. This is especially useful because the development and test environemnt should not be using the same database. As seen in the code, before the application is created, the user needs to specify the ENVIRONMENT that they wish to run in.
 
-- *** GraphQL ***
+- **GraphQL**
+    - The API uses the GraphQL query language so the entire API can be accessed through the /graphql endpoint.
+    
+    - In an effort to simplify the design and make it robust, the **type-graphql** is used in conjunction with **typorm**. By using both of these libraries both the database and graphql API can be created using central model/entity classes. If changes are made to the database design, there will only need to be minimal changes in order to keep graphql in sync with the database structure.
 
-- *** SQLite ***
+- **SQLite**
     - Since this is not a production application, SQLite was chosen as the database as it requires little to no setup by the user. All that is required is either a path so the database file can be created or a ":memory:" argument so that the files just runs in-memory.
 
     - Note that SQLite is not meant to be used in a prodution setting so a new database would have to be chosen if the end-goal is to launch the application in a production environemnt
 
-Aside from this, it is important to note that this application is purposefully missing specific libraries/components. For instance, there is no use of CORS, Server-side Sessions, or environmental variables to mask settings within the application. The application is a local project and so the ideas above were deemed out of scope.
+- **Data Access Object (DAO)**
+    - In order to make the application more loosely coupled, the database logic is encapsulated in various DAOs. This will future-proof the application against changes in the API design. If for some reason there is a need to switch to a REST API, there will be no issue as database access is not tied to graphql logic.
+
+Aside from this, it is important to note that this application is purposefully missing specific production libraries/components. For instance, there is no use of CORS, Server-side Sessions, or environmental variables to mask settings within the application. The application is a local project and so the ideas above were deemed out of scope.
+
 
 # Database Design
 ![](./readme-assets/simple-tables.png)
 
 ### Simple Tables
-While the simple tables picture denotes multiple tables, you will find that in the actual database there are only tables for Appetizers and Entrees. This was purely done for the sake of speeding up development. The (2) tables are more than enough for use in development and testing.
-
-### Complex Tables
+While the diagram above denotes multiple tables, you will find that in the actual database there are only tables for Appetizers and Entrees. This was purely done for the sake of speeding up development. The (2) tables are more than enough to prove application design and logic.
 
 ### Business Logic
-There are number of requirements that are handled via business logic as opposed to handled via database design. For instance, the requirements around pricing for certain food combinations is handled within the DAO as opposed to built into the database. Additionally, PK issues and attempts to alter the database incorrectly are also handled via the DAO.
+There are a number of requirements that are handled via business logic as opposed to handled via database design. For instance, the requirements around pricing for certain food combinations is handled within the DAO as opposed to built into the database. Additionally, PK validation and attempts to alter the database incorrectly are also handled via the DAO instead of database logic (e.g. SQLite Check() functions)
 
 # Testing
 
-The Jest Testing Framework was used to test this application. All tests can be found in the "./_tests_" directory and can be run using the ```npm run test``` command. The results and coverage of all the tests will be outputted to the console. While Jest is often used to test JavaScript, this application tests the Typescript files by utilizing the ts-jest library.
+The Jest Testing Framework was used to test this application. All tests can be found in the "./\__tests__" directory and can be run using the ```npm run test``` command. The results and coverage of all the tests will be outputted to the console. While Jest is often written in JavaScript, these tests are written in typescript with the help of the ts-jest library
 
-In addition to using Jest, manual testing was conducted using the Postman API application and DataGrip application as needed
+In addition to using Jest, manual testing was conducted using the Postman API and DataGrip applications as needed
 - Postman helped to verify whether errors were due to programming logic or invalid API calls.
 
 - DataGrip provides a rich GUI that allows you to interact with your database
@@ -66,6 +71,6 @@ Once you have NodeJS installed simply follow the instructions below:
     - You can run ```npm run dev``` which will instead trigger Node to compile all of the files at runtime. This option uses ```nodemon``` so any changes to the codebase will automatically restart the server
 
 4. Your server should now be active and can be reached at http://localhost:4000
-    - NOTE: The application made use of the ```ruru``` library in order to give you access to a GraphiQL IDE during development. A picture of the IDE and some example queries can be seen below
+    - The application made use of the ```ruru``` library in order to give you access to a ```GraphiQL IDE``` during development. A picture of the IDE and some example queries can be seen below
     
     - The schema should already be included in the current directory with all of the files you cloned, and if you make changes to the schema, they will be reflected anytime the server is started
