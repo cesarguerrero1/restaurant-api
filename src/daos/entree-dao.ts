@@ -8,6 +8,10 @@
 import { Repository, DataSource} from "typeorm";
 import { Entree } from "../models/entree";
 
+interface EntreeUpdateInterface extends Partial<Entree>{
+    entreeID: number
+}
+
 /**
  * This class is the Data Access Object for the Entree Table and will be used to interact with the database
  */
@@ -50,10 +54,12 @@ export default class EntreeDAO{
         if(newEntree.price < 0){
             throw new Error("Price cannot be negative");
         };
-
-        const existingEntree = await this.getEntreeByID(newEntree.entreeID);
-        if(existingEntree !== null){
-            throw new Error("An entree with that PK already exists");
+        
+        if(newEntree.entreeID !== undefined){
+            const existingEntree = await this.getEntreeByID(newEntree.entreeID);
+            if(existingEntree !== null){
+                throw new Error("An entree with that PK already exists");
+            }
         }
 
         return await this.repository.save(newEntree);
@@ -61,10 +67,10 @@ export default class EntreeDAO{
 
     /**
      * Updates an existing entree in the table
-     * @param {Entree} entree - Must contain all of the necessary fields to update an entree
+     * @param {EntreeUpdateInterface} entree - Contains the primary key of the entree we want to update and the new values
      * @returns - The object that was updated in the database
      */
-    async updateEntreeById(entree: Entree){
+    async updateEntreeById(entree: EntreeUpdateInterface){
         const existingEntree = await this.getEntreeByID(entree.entreeID);
         if(existingEntree === null){
             throw new Error("Entree does not exist");
@@ -75,7 +81,7 @@ export default class EntreeDAO{
             throw new Error("Price cannot be negative");
         }
 
-        return await this.repository.save(entree);
+        return await this.repository.save(updatedEntree);
     };
 
     /**

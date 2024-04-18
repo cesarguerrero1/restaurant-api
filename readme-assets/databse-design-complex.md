@@ -56,13 +56,13 @@
     QuicheFilling{
         int quicheFillingID PK
         string name
-        float cost
+        float price
     }
 
     Side{
         int sideID PK
         string name
-        float cost
+        float price
     }
 
     SoupCombo{
@@ -74,7 +74,7 @@
     Soup{
         int soupID PK
         string name
-        float cost
+        float price
     }
     
     Quichs }|--|| Side : ""

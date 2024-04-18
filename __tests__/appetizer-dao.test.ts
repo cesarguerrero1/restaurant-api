@@ -86,9 +86,7 @@ describe("Testing AppetizerDAO methods", () => {
     test("Update a non-existent appetizer", async () => {
         const data = {
             appetizerID: 2,
-            name: "",
-            description: "",
-            price: 0
+            name: ""
         };
 
         await expect(appetizerDAO.updateAppetizerById(data)).rejects.toThrow();
@@ -97,8 +95,6 @@ describe("Testing AppetizerDAO methods", () => {
     test("Update an existing appetizer with a negative price", async () => {
         const data = {
             appetizerID: 1,
-            name: "",
-            description: "",
             price: -1
         };
 
@@ -107,20 +103,18 @@ describe("Testing AppetizerDAO methods", () => {
 
     test("Update an existing appetizer", async () => {
         const newData = {
-            ...data,
             appetizerID: 1,
-            name: "New Name",
-            description: "New Description",
+            name: "New Name"
         }
 
         await appetizerDAO.updateAppetizerById(newData);
         const result = await appetizerDAO.getAppetizerByID(newData.appetizerID);
-        expect(result).not.toBeNull();
 
+        expect(result).not.toBeNull();
         expect(result?.appetizerID).toBe(newData.appetizerID);
         expect(result?.name).toBe(newData.name);
-        expect(result?.description).toBe(newData.description);
-        expect(result?.price).toBe(newData.price);
+        expect(result?.description).toBe(data.description);
+        expect(result?.price).toBe(data.price);
     });
     
     test("Delete an existing appetizer", async () => {
@@ -151,9 +145,8 @@ describe("Testing all AppetizerDAO methods with multiple rows", () => {
     });
 
     test("Updating one of the rows in the database", async () => {
-        const data = dataArray[0];
+        const data = dataArray[1];
         const newData = {
-            ...data,
             appetizerID: 2,
             name: "Update Name"
         };
@@ -161,11 +154,10 @@ describe("Testing all AppetizerDAO methods with multiple rows", () => {
         await appetizerDAO.updateAppetizerById(newData);
         const result = await appetizerDAO.getAppetizerByID(newData.appetizerID);
 
+        //We can't guarantee the order of the promises so we can only check that the row was updated
         expect(result).not.toBeNull();
         expect(result?.appetizerID).toBe(newData.appetizerID);
         expect(result?.name).toBe(newData.name);
-        expect(result?.description).toBe(newData.description);
-        expect(result?.price).toBe(newData.price);
     });
 
     test("Delete one of the rows in the database", async () => {

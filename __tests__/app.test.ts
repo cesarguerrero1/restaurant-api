@@ -6,7 +6,7 @@
  */
 
 
-import createApp from "../src/app";
+import {createApp} from "../src/app";
 
 describe("Testing Factory Design pattern", () => {
 
