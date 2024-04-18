@@ -24,7 +24,8 @@ export class Enchilada{
     @Field(type => EnchiladaPrice)
     @ManyToOne(() => EnchiladaPrice, {
         onDelete: "RESTRICT",
-        nullable: false
+        nullable: false,
+        eager: true //We want to always load the price when we load the enchilada
     })
     enchiladaPrice!: EnchiladaPrice
 }

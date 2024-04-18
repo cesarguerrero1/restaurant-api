@@ -30,7 +30,7 @@ export class EnchiladaPrice{
 }
 
 @InputType()
-export class createEnchiladaPriceInput{
+export class CreateEnchiladaPriceInput{
     @Field(type => Float)
     priceForOne!: number
 
