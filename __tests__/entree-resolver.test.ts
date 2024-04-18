@@ -181,3 +181,91 @@ describe("Deleting Entrees using GraphQL", () => {
         expect(response.body.data.deleteEntree).toBeFalsy();
     });
 });
+
+
+describe("Update Entrees using GraphQL", () => {
+    //As before we need to grab all the entrees from the database
+    let entreeArray: Entree[];
+    beforeAll(async () => {
+        const queryData = {
+            query: getAllEntreesQuery
+        };
+
+        const response = await request(application).post("/graphql").send(queryData);
+        entreeArray = response.body.data.entrees;
+    });
+
+    test("Invalid entree should not be updated", async () => {
+        const queryData = {
+            query: `
+                mutation UpdateEntree{
+                    updateEntree(data:{
+                        entreeID: -1,
+                        name: "Name",
+                        description: "Description",
+                        price: 0
+                    }){
+                        entreeID,
+                        name,
+                        price,
+                        description
+                    }
+                }
+            `
+        };
+
+        const response = await request(application).post("/graphql").send(queryData);
+        expect(response.body.errors).toBeDefined();
+    });
+
+
+    test("Valid entree update", async () => {
+        const singleEntree = entreeArray[0];
+        console.log(singleEntree);
+        const queryData = {
+            query: `
+                mutation UpdateEntree{
+                    updateEntree(data:{
+                        entreeID: ${singleEntree.entreeID},
+                        name: "New Name"
+                    }){
+                        entreeID,
+                        name,
+                        price,
+                        description
+                    }
+            }`
+        };
+
+        const response = await request(application).post("/graphql").send(queryData);
+        const updatedEntree = response.body.data.updateEntree;
+        expect(updatedEntree.entreeID).toBe(singleEntree.entreeID);
+        expect(updatedEntree.name).toBe("New Name");
+        expect(updatedEntree.price).toBe(singleEntree.price);
+        expect(updatedEntree.description).toBe(singleEntree.description);
+    });
+
+    test("Valid entree update with no data", async () => {
+        const singleEntree = entreeArray[0];
+        const queryData = {
+            query: `
+                mutation UpdateEntree{
+                    updateEntree(data:{
+                        entreeID: ${singleEntree.entreeID}
+                    }){
+                        entreeID,
+                        name,
+                        price,
+                        description
+                    }
+            }`
+        };
+
+        const response = await request(application).post("/graphql").send(queryData);
+        const updatedEntree = response.body.data.updateEntree;
+        expect(updatedEntree.entreeID).toBe(singleEntree.entreeID);
+        expect(updatedEntree.name).toBe("New Name");
+        expect(updatedEntree.price).toBe(singleEntree.price);
+        expect(updatedEntree.description).toBe(singleEntree.description);
+    });
+});

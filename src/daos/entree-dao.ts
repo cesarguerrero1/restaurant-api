@@ -79,7 +79,7 @@ export default class EntreeDAO{
             throw new Error("Price cannot be negative");
         }
 
-        return await this.repository.save(entree);
+        return await this.repository.save(updatedEntree);
     };
 
     /**
